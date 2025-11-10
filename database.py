@@ -5,7 +5,6 @@ class DatabaseManager:
         self.init_databases()
     
     def init_databases(self):
-        # Инициализация базы пользователей
         connection = sqlite3.connect('users.db')
         cursor = connection.cursor()
         cursor.execute('''
@@ -18,7 +17,6 @@ class DatabaseManager:
         connection.commit()
         connection.close()
         
-        # Инициализация базы задач
         self.baza_zametok()
     
     def baza_zametok(self):
@@ -35,8 +33,7 @@ class DatabaseManager:
         ''')
         connection.commit()
         connection.close()
-    
-    # Методы для работы с пользователями
+        
     def create_user(self, username, password):
         connection = sqlite3.connect('users.db')
         cursor = connection.cursor()
@@ -94,8 +91,7 @@ class DatabaseManager:
         cursor.execute('DELETE FROM users WHERE username = ?', (username,))
         connection.commit()
         connection.close()
-    
-    # Методы для работы с задачами
+
     def add_task(self, user_id, task, description):
         connection = sqlite3.connect('tasks.db')
         cursor = connection.cursor()
@@ -133,4 +129,5 @@ class DatabaseManager:
         cursor.execute('UPDATE permanent_tasks SET status = ? WHERE id = ? AND user_id = ?', 
                       (new_status, task_id, user_id))
         connection.commit()
+
         connection.close()
