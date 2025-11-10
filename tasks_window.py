@@ -32,7 +32,6 @@ class TasksWindow(QWidget):
         title.setAlignment(Qt.AlignCenter)
         layout.addWidget(title)
         
-        # Список задач
         self.tasks_list = QListWidget()
         layout.addWidget(QLabel('Ваши задачи:'))
         layout.addWidget(self.tasks_list)
@@ -202,4 +201,5 @@ class TasksWindow(QWidget):
     def go_back(self):
         self.clear_form()
         self.main_window.current_user_id = None
+
         self.stacked_widget.setCurrentIndex(0)
